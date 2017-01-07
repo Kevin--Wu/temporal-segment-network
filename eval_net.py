@@ -117,6 +117,7 @@ if args.num_worker > 1:
     video_scores = pool.map(eval_video, eval_video_list)
 else:
     build_net()
+    print eval_video
     video_scores = map(eval_video, eval_video_list)
 
 video_pred = [np.argmax(default_aggregation_func(x[0])) for x in video_scores]
