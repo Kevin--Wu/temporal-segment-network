@@ -67,7 +67,8 @@ def eval_video(video):
     label = video[1]
     vid = video[0]
 
-    print f_info
+    print f_info[0]
+    print vid
     video_frame_path = f_info[0][vid]
     if args.modality == 'rgb':
         cnt_indexer = 1
@@ -118,6 +119,8 @@ if args.num_worker > 1:
     video_scores = pool.map(eval_video, eval_video_list)
 else:
     build_net()
+    print split_tp
+    print eval_video_list
     video_scores = map(eval_video, eval_video_list)
 
 video_pred = [np.argmax(default_aggregation_func(x[0])) for x in video_scores]
